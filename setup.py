@@ -13,25 +13,29 @@ import setuptools
 __version__ = '2.0.5'
 __here__ = os.path.abspath(os.path.dirname(__file__))
 
-if sys.version_info.major == 3:
-    astro = "astropy"
-else:
-    astro = "astropy<3.0"
+#if sys.version_info.major == 3:
+#    astro = "astropy"
+#else:
+#    astro = "astropy<3.0"
 
-class get_pybind_include(object):
-    """Helper class to determine the pybind11 include path
+#class get_pybind_include(object):
+#    """Helper class to determine the pybind11 include path
 
-    The purpose of this class is to postpone importing pybind11
-    until it is actually installed, so that the ``get_include()``
-    method can be invoked. """
+#    The purpose of this class is to postpone importing pybind11
+#    until it is actually installed, so that the ``get_include()``
+#    method can be invoked. """
 
-    def __init__(self, user=False):
-        self.user = user
+#    def __init__(self, user=False):
+#        self.user = user
 
-    def __str__(self):
-        import pybind11
-        return pybind11.get_include(self.user)
+#    def __str__(self):
+#        import pybind11
+#        return pybind11.get_include(self.user)
+#
 
+# Get the requirements list
+with open('requirements.txt', 'r') as f:
+    requirements = f.read().splitlines()
 
 ext_modules = [
     Extension(
@@ -56,8 +60,8 @@ ext_modules = [
         ],
         include_dirs=[
             # Path to pybind11 headers
-            get_pybind_include(),
-            get_pybind_include(user=True),
+            #get_pybind_include(),
+            #get_pybind_include(user=True),
             os.path.join(__here__, 'src')
         ],
         extra_link_args=['-lm'],
@@ -136,7 +140,7 @@ setup(
     url='https://github.com/telegraphic/pyymw16',
     download_url='https://github.com/telegraphic/pyymw16/archive/%s.tar.gz' % __version__,
     python_requires='>=2.7',
-    install_requires=['pybind11>=2.2', astro],
+    install_requires=requirements,
     tests_require = ['pytest<3.7', astro, 'numpy'],
     setup_requires = ['pytest-runner', 'pytest-cov'],
     ext_modules=ext_modules,
