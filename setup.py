@@ -141,8 +141,6 @@ setup(
     download_url='https://github.com/telegraphic/pyymw16/archive/%s.tar.gz' % __version__,
     python_requires='>=2.7',
     install_requires=requirements,
-    tests_require = ['pytest<3.7', astro, 'numpy'],
-    setup_requires = ['pytest-runner', 'pytest-cov'],
     ext_modules=ext_modules,
     packages=['pyymw16'],
     package_data={'pyymw16': ['spiral.txt', 'ymw16par.txt']},

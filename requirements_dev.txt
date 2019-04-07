@@ -1,0 +1,5 @@
+-e .
+pytest<3.7
+codecov
+pytest-runner
+pytest-cov
